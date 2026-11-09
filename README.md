@@ -67,3 +67,41 @@ Simply open [Lovable](https://lovable.dev/projects/f259055c-52b4-4211-ac06-fb08b
 ## I want to use a custom domain - is that possible?
 
 We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+
+---
+
+## Supabase (local self-hosted)
+
+The frontend talks to a Supabase stack running on this Zo server. The cloud
+project `ibhqtvsygrtdncnwqhjb.supabase.co` no longer resolves (deleted/paused),
+so all auth and data now live locally.
+
+| Piece | Value |
+| --- | --- |
+| Gateway (public) | `https://supabase-herb.zocomputer.io` |
+| REST | `https://supabase-herb.zocomputer.io/rest/v1` |
+| Auth | `https://supabase-herb.zocomputer.io/auth/v1` |
+| Studio | `https://supabase-herb.zocomputer.io/project/default` (basic auth in `/opt/supabase/env/gateway.env`) |
+| Local Postgres | `127.0.0.1:5432`, PGDATA `/opt/supabase/data/db` |
+| Backend files | `/opt/supabase` (`bin/run.sh`, `env/*.env`) |
+
+Client config comes from `VITE_SUPABASE_URL` and
+`VITE_SUPABASE_PUBLISHABLE_KEY` (see `.env.example`). `.env` is gitignored.
+
+### Tables
+
+`profiles`, `job_submissions`, `market_ranges`, `trades`, plus a
+`handle_new_user()` trigger on `auth.users` that inserts a `profiles` row.
+
+### Restarting the backend
+
+Each component is a Zo user service: `supabase-db`, `supabase-auth`,
+`supabase-rest`, `supabase-realtime`, `supabase-storage`, `supabase-imgproxy`,
+`supabase-meta`, `supabase-functions`, `supabase-studio`, and `supabase`
+(the gateway). Restart the gateway after editing `/opt/supabase/env/*.env`.
+
+### Deploy
+
+`vercel.json` sets the Vite build and SPA rewrite. Deploys run from
+`GustheTrader/handyhub-signin` on Vercel project `handyhub-signin`
+(alias `https://handyhub-signin.vercel.app`).
