@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Building, Menu, X, LogOut, User, ArrowRight } from "lucide-react";
+import { Building, Menu, X, LogOut, User, ArrowRight, BookOpen } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   DropdownMenu,
@@ -111,6 +111,23 @@ const Navbar = () => {
               <span className="relative">{label}</span>
             </button>
           ))}
+          <Link
+            to="/blog"
+            className={cn(
+              "group relative flex items-center gap-1.5 rounded-full px-4 py-2 text-[0.82rem] font-semibold text-muted-foreground transition-colors duration-300 hover:text-foreground",
+              location.pathname.startsWith("/blog") && "text-foreground",
+            )}
+          >
+            <span
+              className={cn(
+                "absolute inset-0 -z-10 rounded-full bg-white opacity-0 shadow-[0_4px_14px_-8px_hsl(20_50%_25%/0.6)] transition-opacity duration-300 group-hover:opacity-100",
+                location.pathname.startsWith("/blog") && "opacity-100",
+              )}
+            />
+            <span className="pointer-events-none absolute bottom-1.5 left-1/2 h-[2px] w-0 -translate-x-1/2 rounded-full bg-gradient-to-r from-[hsl(30_100%_60%)] via-[hsl(16_92%_54%)] to-[hsl(340_80%_58%)] transition-all duration-300 group-hover:w-5" />
+            <BookOpen className="h-3.5 w-3.5 text-primary/80 transition-colors group-hover:text-primary" />
+            <span className="relative">Blog</span>
+          </Link>
         </nav>
 
         {/* Auth + mobile toggle */}
@@ -183,6 +200,13 @@ const Navbar = () => {
                 {label}
               </button>
             ))}
+            <Link
+              to="/blog"
+              className="flex items-center gap-2.5 rounded-2xl px-4 py-3 text-left text-sm font-semibold text-foreground/85 transition-colors hover:bg-white/60"
+            >
+              <BookOpen className="h-4 w-4 text-primary" />
+              Blog
+            </Link>
             {!user && (
               <button
                 onClick={() => navigate("/auth")}

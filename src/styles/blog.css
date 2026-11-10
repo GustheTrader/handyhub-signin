@@ -1,0 +1,186 @@
+/* Long-form article typography for /blog/:slug */
+.prose-tmh {
+  font-size: 1.0rem;
+  line-height: 1.75;
+  color: hsl(var(--foreground) / 0.86);
+}
+
+.prose-tmh > * + * {
+  margin-top: 1.05em;
+}
+
+.prose-tmh h2 {
+  margin-top: 2.1em;
+  margin-bottom: 0.6em;
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.22;
+  color: hsl(var(--foreground));
+}
+
+.prose-tmh h3 {
+  margin-top: 1.7em;
+  margin-bottom: 0.45em;
+  font-size: 1.12rem;
+  font-weight: 800;
+  letter-spacing: -0.012em;
+  color: hsl(var(--foreground));
+}
+
+.prose-tmh h2 + *,
+.prose-tmh h3 + * {
+  margin-top: 0;
+}
+
+.prose-tmh strong {
+  font-weight: 700;
+  color: hsl(var(--foreground));
+}
+
+.prose-tmh a {
+  color: hsl(var(--primary));
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+.prose-tmh a:hover {
+  text-decoration-thickness: 2px;
+}
+
+.prose-tmh ul,
+.prose-tmh ol {
+  padding-left: 1.15rem;
+}
+
+.prose-tmh ul {
+  list-style: disc;
+}
+
+.prose-tmh ol {
+  list-style: decimal;
+}
+
+.prose-tmh li {
+  margin-top: 0.42em;
+  padding-left: 0.15rem;
+}
+
+.prose-tmh li::marker {
+  color: hsl(var(--primary) / 0.75);
+}
+
+.prose-tmh blockquote {
+  margin: 1.5em 0;
+  border-left: 3px solid hsl(var(--primary) / 0.5);
+  border-radius: 0 14px 14px 0;
+  background: hsl(0 0% 100% / 0.55);
+  padding: 0.85rem 1.1rem;
+  font-style: italic;
+  color: hsl(var(--muted-foreground));
+}
+
+.prose-tmh blockquote > * + * {
+  margin-top: 0.6em;
+}
+
+/* Tables: the posts carry cost tables, so these need to stay readable on mobile */
+.prose-tmh table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  margin: 1.5em 0;
+  border-radius: 14px;
+  border: 1px solid hsl(var(--border) / 0.5);
+  background: hsl(0 0% 100% / 0.6);
+}
+
+.prose-tmh thead {
+  background: hsl(var(--primary) / 0.07);
+}
+
+.prose-tmh th {
+  text-align: left;
+  font-weight: 800;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: hsl(var(--foreground));
+  padding: 0.65rem 0.85rem;
+  border-bottom: 1px solid hsl(var(--border) / 0.55);
+  white-space: nowrap;
+}
+
+.prose-tmh td {
+  padding: 0.6rem 0.85rem;
+  border-bottom: 1px solid hsl(var(--border) / 0.28);
+  vertical-align: top;
+}
+
+.prose-tmh tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.prose-tmh tbody tr:hover {
+  background: hsl(var(--primary) / 0.04);
+}
+
+.prose-tmh hr {
+  margin: 2.2em 0;
+  border: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    hsl(var(--primary) / 0.35),
+    transparent
+  );
+}
+
+.prose-tmh code {
+  font-size: 0.86em;
+  border-radius: 6px;
+  background: hsl(var(--primary) / 0.09);
+  padding: 0.12em 0.36em;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+}
+
+.prose-tmh pre {
+  overflow-x: auto;
+  border-radius: 14px;
+  background: hsl(var(--foreground) / 0.94);
+  padding: 1rem 1.1rem;
+  color: hsl(0 0% 96%);
+  font-size: 0.84rem;
+}
+
+.prose-tmh pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  font-weight: 400;
+}
+
+.prose-tmh img {
+  border-radius: 16px;
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .prose-tmh {
+    font-size: 0.97rem;
+  }
+
+  .prose-tmh h2 {
+    font-size: 1.24rem;
+  }
+
+  .prose-tmh h1 {
+    font-size: 1.5rem;
+  }
+}
