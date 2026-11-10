@@ -105,3 +105,12 @@ Each component is a Zo user service: `supabase-db`, `supabase-auth`,
 `vercel.json` sets the Vite build and SPA rewrite. Deploys run from
 `GustheTrader/handyhub-signin` on Vercel project `handyhub-signin`
 (alias `https://handyhub-signin.vercel.app`).
+
+## Blog
+
+Posts live as markdown in `content/blog/` (`YYYY-MM-DD-slug.md` with YAML
+frontmatter: `title`, `slug`, `date`/`publish_date`, `category`, `services`,
+`read_time`, `seo_description`). `build/blog-posts.ts` exposes them to the app
+as the Vite virtual module `virtual:blog-posts`, so adding a post is a file
+drop — no index to update. Routes: `/blog` (search + category filter) and
+`/blog/:slug` (rendered with react-markdown, styled by `src/styles/blog.css`).
