@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import JobSubmission from '@/components/JobSubmission';
 import MobileTransfer from '@/components/MobileTransfer';
 import HeroStage from '@/components/HeroStage';
+import GlassChip from '@/components/GlassChip';
 import tmhLogo from '@/assets/tmh-logo.png';
 
 const rise = {
@@ -44,48 +45,38 @@ const Hero = () => {
               </span>
             </motion.div>
 
-            {/* 3D logo plate */}
-            <motion.div
-              variants={rise}
-              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-              className="relative preserve-3d"
-              style={{ transform: 'translateZ(140px)' }}
-            >
-              <div className="relative">
-                <div className="absolute inset-0 -z-10 rounded-full bg-primary-glow/50 blur-3xl scale-90" />
-                <img
-                  src={tmhLogo}
-                  alt="Truckee Meadows Handyman TMH crest logo"
-                  width={1024}
-                  height={1024}
-                  className="w-[300px] md:w-[400px] h-auto object-contain mx-auto drop-shadow-2xl"
+            {/* Crest flanked by glass badges — no overlap, even on mobile */}
+            <div className="relative z-10 w-full">
+              <div className="mx-auto grid w-full max-w-4xl grid-cols-2 items-center justify-items-center gap-4 sm:gap-5 lg:max-w-5xl lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:gap-10 xl:gap-14">
+                <div className="col-span-2 row-start-1 flex justify-center lg:col-span-1 lg:col-start-2 lg:row-start-1">
+                  <div className="relative shrink-0">
+                    <div className="absolute inset-0 -z-10 scale-90 rounded-full bg-primary-glow/50 blur-3xl" />
+                    <img
+                      src={tmhLogo}
+                      alt="Truckee Meadows Handyman TMH crest logo"
+                      width={1024}
+                      height={1024}
+                      className="mx-auto h-auto w-[228px] object-contain drop-shadow-2xl sm:w-[270px] lg:w-[330px] xl:w-[360px]"
+                    />
+                  </div>
+                </div>
+
+                <GlassChip
+                  icon={Hammer}
+                  label="Got Work?"
+                  from="left"
+                  delay={0.85}
+                  className="row-start-2 col-span-1 justify-self-end lg:col-span-1 lg:col-start-1 lg:row-start-1"
+                />
+                <GlassChip
+                  icon={ShieldCheck}
+                  label="5 Year Warranty"
+                  from="right"
+                  delay={1.05}
+                  className="row-start-2 col-span-1 justify-self-start lg:col-span-1 lg:col-start-3 lg:row-start-1"
                 />
               </div>
-
-              {/* Orbiting 3D chips */}
-              <motion.div
-                aria-hidden
-                initial={{ opacity: 0, x: -60 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, delay: 1, ease: [0.22, 1, 0.36, 1] }}
-                className="hidden md:flex absolute -left-28 top-8 items-center gap-2 rounded-2xl border border-border bg-card/80 backdrop-blur px-4 py-3 shadow-3d"
-                style={{ transform: 'translateZ(0px)' }}
-              >
-                <span className="text-2xl font-bold text-gradient-primary">Got Work?</span>
-              </motion.div>
-
-              <motion.div
-                aria-hidden
-                initial={{ opacity: 0, x: 60 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                className="hidden md:flex absolute -right-32 bottom-10 items-center gap-2 rounded-2xl border border-border bg-card/80 backdrop-blur px-4 py-3 shadow-3d"
-                style={{ transform: 'translateZ(0px)' }}
-              >
-                <ShieldCheck className="h-6 w-6 text-primary" />
-                <span className="text-xl font-bold text-gradient-primary">5 Year Warranty</span>
-              </motion.div>
-            </motion.div>
+            </div>
 
             {/* Headline */}
             <motion.div

@@ -245,8 +245,62 @@
     box-shadow: var(--shadow-3d);
   }
 
+  .text-gradient-warm {
+    background: linear-gradient(105deg, hsl(28 100% 56%) 0%, hsl(16 92% 54%) 55%, hsl(342 80% 56%) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
   .shadow-glow {
     box-shadow: var(--shadow-glow);
+  }
+
+  /* Apple-style frosted glass: soft fill, hairline light, layered depth */
+  .glass-chip {
+    position: relative;
+    isolation: isolate;
+    background: linear-gradient(
+      155deg,
+      hsl(0 0% 100% / 0.82) 0%,
+      hsl(0 0% 100% / 0.46) 42%,
+      hsl(30 100% 96% / 0.34) 100%
+    );
+    backdrop-filter: blur(26px) saturate(200%);
+    -webkit-backdrop-filter: blur(26px) saturate(200%);
+    border: 1px solid hsl(0 0% 100% / 0.85);
+    box-shadow:
+      inset 0 1px 0 hsl(0 0% 100% / 1),
+      inset 0 -1px 0 hsl(28 45% 62% / 0.18),
+      0 26px 54px -26px hsl(18 80% 40% / 0.42),
+      0 4px 14px -7px hsl(18 60% 35% / 0.18);
+    transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 450ms ease;
+  }
+
+  .glass-chip::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: radial-gradient(120% 90% at 25% 0%, hsl(0 0% 100% / 0.65) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .glass-chip:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      inset 0 1px 0 hsl(0 0% 100% / 1),
+      inset 0 -1px 0 hsl(28 40% 70% / 0.2),
+      0 28px 54px -24px hsl(20 45% 30% / 0.36),
+      0 4px 14px -6px hsl(20 45% 30% / 0.18);
+  }
+
+  /* Frosted header surface with a warm tint so the bar reads as part of the page */
+  .glass-nav {
+    background: linear-gradient(to bottom, hsl(40 40% 99% / 0.84), hsl(38 45% 97% / 0.68));
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
   }
 
   .hero-grid {
